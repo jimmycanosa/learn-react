@@ -1,29 +1,30 @@
+import { Profile } from './Profile';
 
-const baseUrl = 'https://i.imgur.com/';
-const person = {
-  name: 'Gregorio Y. Zara',
-  imageId: '7vQD0fP',
-  imageSize: 's',
-  theme: {
-    backgroundColor: 'black',
-    color: 'pink'
-  }
-};
-
-export default function TodoList() {
+export default function Gallery() {
   return (
-    <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
-      <img
-        className="avatar"
-        src={baseUrl + person.imageId + person.imageSize + '.jpg'}
-        alt={person.name}
+    <div>
+      <h1>Notable Scientists</h1>
+      <Profile
+        name='Maria Skłodowska-Curie'
+        imageID='szV5sdG'
+        imageSize={70}
+        profession='physicist and chemist'
+        awards={[
+          'Nobel Prize in Physics',
+          'Nobel Prize in Chemistry',
+          'Davy Medal',
+          'Matteucci Medal',
+        ]}
+        discovery='polonium (chemical element)'
       />
-      <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
-      </ul>
+      <Profile
+        name='Katsuko Saruhashi'
+        imageID='YfeOqp2'
+        imageSize={70}
+        profession='geochemist'
+        awards={['Miyake Prize for geochemistry', 'Tanaka Prize']}
+        discovery='a method for measuring carbon dioxide in seawater'
+      />
     </div>
   );
 }
