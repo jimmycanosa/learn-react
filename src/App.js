@@ -1,30 +1,25 @@
-import { Profile } from './Profile';
+import { getImageUrl } from './utils.js';
 
-export default function Gallery() {
+function Avatar({ person, size }) {
   return (
-    <div>
-      <h1>Notable Scientists</h1>
-      <Profile
-        name='Maria Skłodowska-Curie'
-        imageID='szV5sdG'
-        imageSize={70}
-        profession='physicist and chemist'
-        awards={[
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal',
-        ]}
-        discovery='polonium (chemical element)'
-      />
-      <Profile
-        name='Katsuko Saruhashi'
-        imageID='YfeOqp2'
-        imageSize={70}
-        profession='geochemist'
-        awards={['Miyake Prize for geochemistry', 'Tanaka Prize']}
-        discovery='a method for measuring carbon dioxide in seawater'
-      />
-    </div>
+    <img
+      className='avatar'
+      src={getImageUrl(person, size > 90 ? 'b' : 's')}
+      alt={person.name}
+      width={size}
+      height={size}
+    />
+  );
+}
+
+export default function Profile() {
+  return (
+    <Avatar
+      size={80}
+      person={{
+        name: 'Gregorio Y. Zara',
+        imageId: '7vQD0fP',
+      }}
+    />
   );
 }
