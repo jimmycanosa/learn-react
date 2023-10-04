@@ -1,34 +1,27 @@
+import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
-export function Profile({
-  name,
-  imageID,
-  imageSize = 70,
-  profession,
-  awards,
-  discovery,
-}) {
+export default function Profile({ person }) {
   return (
-    <section className='profile'>
-      <h2>{name}</h2>
-      <img
-        className='avatar'
-        src={getImageUrl(imageID)}
-        alt={name}
-        width={imageSize}
-        height={imageSize}
-      />
-      <ul>
-        <li>
-          <b>Profession: </b>{profession}
-        </li>
-        <li>
-          <b>Awards: {awards.length} </b>({awards.join(', ')})
-        </li>
-        <li>
-          <b>Discovered: </b>{discovery}
-        </li>
-      </ul>
-    </section>
+    <Panel>
+      <Header person={person} />
+      <Avatar person={person} />
+    </Panel>
+  )
+}
+
+function Header({ person }) {
+  return <h1>{person.name}</h1>;
+}
+
+function Avatar({ person }) {
+  return (
+    <img
+      className="avatar"
+      src={getImageUrl(person)}
+      alt={person.name}
+      width={50}
+      height={50}
+    />
   );
 }
