@@ -1,22 +1,20 @@
-import { Fragment } from 'react';
+import { useState, useEffect } from 'react';
+import Clock from './Clock.js';
 
-const poem = {
-  lines: [
-    'I write, erase, rewrite',
-    'Erase again, and then',
-    'A poppy blooms.',
-  ],
-};
+function useTime() {
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
 
-export default function Poem() {
+export default function App() {
+  const time = useTime();
   return (
-    <article>
-      {poem.lines.map((line, index) => (
-        <Fragment key={index}>
-          {index > 0 && <hr />}
-          <p>{line}</p>
-        </Fragment>
-      ))}
-    </article>
+    <Clock time={time} />
   );
 }
