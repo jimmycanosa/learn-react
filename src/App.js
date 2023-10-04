@@ -1,38 +1,33 @@
-const drinks = {
-  tea: {
-    part: 'leaf',
-    caffeine: '15–70 mg/cup',
-    age: '4,000+ years'
-  },
-  coffee: {
-    part: 'bean',
-    caffeine: '80–185 mg/cup',
-    age: '1,000+ years'
-  }
-};
+import { people } from './data.js';
+import { getImageUrl } from './utils.js';
 
-function Drink({ name }) {
-  const info = drinks[name];
-  return (
-    <section>
-      <h1>{name}</h1>
-      <dl>
-        <dt>Part of plant</dt>
-        <dd>{info.part}</dd>
-        <dt>Caffeine content</dt>
-        <dd>{info.caffeine}</dd>
-        <dt>Age</dt>
-        <dd>{info.age}</dd>
-      </dl>
-    </section>
-  );
+function ListSection({ list }) {
+  return list.map((person) => (
+    <li key={person.id}>
+      <img src={getImageUrl(person)} alt={person.name} />
+      <p>
+        <b>{person.name}:</b>
+        {' ' + person.profession + ' '}
+        known for {person.accomplishment}
+      </p>
+    </li>
+  ));
 }
 
-export default function DrinkList() {
+export default function List() {
+  const chemists = people.filter((person) => person.profession === 'chemist');
+  const everyoneElse = people.filter((person) => person.profession !== 'chemist');
   return (
-    <div>
-      <Drink name="tea" />
-      <Drink name="coffee" />
-    </div>
+    <article>
+      <h1>Scientists</h1>
+      <h2>Chemists</h2>
+      <ul>
+        <ListSection list={chemists} />
+      </ul>
+      <h2>Everyone Else</h2>
+      <ul>
+        <ListSection list={everyoneElse} />
+      </ul>
+    </article>
   );
 }
