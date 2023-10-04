@@ -1,17 +1,24 @@
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
-function ListSection({ list }) {
-  return list.map((person) => (
-    <li key={person.id}>
-      <img src={getImageUrl(person)} alt={person.name} />
-      <p>
-        <b>{person.name}:</b>
-        {' ' + person.profession + ' '}
-        known for {person.accomplishment}
-      </p>
-    </li>
-  ));
+function ListSection({ title, filteredList }) {
+  return (
+    <>
+      <h2>{title}</h2>
+      <ul>
+        {filteredList.map((person) => (
+          <li key={person.id}>
+            <img src={getImageUrl(person)} alt={person.name} />
+            <p>
+              <b>{person.name}:</b>
+              {' ' + person.profession + ' '}
+              known for {person.accomplishment}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
 export default function List() {
@@ -20,14 +27,8 @@ export default function List() {
   return (
     <article>
       <h1>Scientists</h1>
-      <h2>Chemists</h2>
-      <ul>
-        <ListSection list={chemists} />
-      </ul>
-      <h2>Everyone Else</h2>
-      <ul>
-        <ListSection list={everyoneElse} />
-      </ul>
+      <ListSection title='Chemists' filteredList={chemists} />
+      <ListSection title='Everyone Else' filteredList={everyoneElse} />
     </article>
   );
 }
