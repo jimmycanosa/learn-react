@@ -8,7 +8,7 @@ export default function Clock({ time }) {
   }
   return (
     <h1 className={className}>
-      {time.toLocaleTimeString()}
+      {time.toLocaleTimeString('en-GB')}
     </h1>
   );
 }
